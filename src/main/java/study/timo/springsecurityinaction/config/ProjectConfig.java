@@ -35,7 +35,7 @@ public class ProjectConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.httpBasic(withDefaults());
         http.authorizeHttpRequests(auth ->
-                auth.anyRequest().authenticated()
+                auth.anyRequest().permitAll()
         );
         return http.build();
     }
