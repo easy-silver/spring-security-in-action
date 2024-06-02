@@ -13,7 +13,7 @@ import study.timo.springsecurityinaction.security.CustomAuthenticationProvider;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-@Configuration
+//@Configuration
 public class ProjectConfig {
 
     private final CustomAuthenticationProvider authenticationProvider;
