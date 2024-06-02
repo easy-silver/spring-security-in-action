@@ -9,17 +9,26 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import study.timo.springsecurityinaction.security.CustomAuthenticationProvider;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 public class ProjectConfig {
+
+    private final CustomAuthenticationProvider authenticationProvider;
+
+    public ProjectConfig(CustomAuthenticationProvider authenticationProvider) {
+        this.authenticationProvider = authenticationProvider;
+    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.httpBasic(withDefaults());
         http.authorizeHttpRequests(auth ->
                 auth.anyRequest().authenticated()
         );
+        http.authenticationProvider(authenticationProvider);
         return http.build();
     }
 
